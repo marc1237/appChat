@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="it" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ME Comunications</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="../frontend/src/style.css" />
+  </head>
+  <body class="bg-background text-text h-screen w-screen overflow-hidden flex items-center justify-center bg-gradient-to-br from-background via-[#0c141a] to-[#121b22]">
+    
+    <!-- App Container -->
+    <div id="app" class="glass w-screen h-screen flex overflow-hidden shadow-none relative z-10">
+      
+      <!-- Screen 1: Login / OTP (Hidden by default, shown via JS if not authenticated) -->
+      <div id="login-screen" class="absolute inset-0 bg-surface/95 backdrop-blur-3xl z-50 flex items-center justify-center hidden">
+        <div class="glass p-10 rounded-2xl w-full max-w-md shadow-2xl border border-white/5 text-center">
+          <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fa-solid fa-bolt text-4xl text-primary"></i>
+          </div>
+          <h2 class="text-3xl font-light mb-2">ME Comunications</h2>
+          <p class="text-text-muted mb-8 text-sm">Entra nel futuro della messaggistica.</p>
+          
+          <form id="login-form" class="space-y-4">
+            <div class="relative">
+              <i class="fa-solid fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
+              <input type="tel" id="phone-input" placeholder="+39 333 1234567" class="w-full bg-surface-hover/50 border border-white/10 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-text-muted/50" required>
+            </div>
+            <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white rounded-xl py-3 font-medium transition-all shadow-lg shadow-primary/20">
+              Invia OTP
+            </button>
+          </form>
+
+          <form id="otp-form" class="space-y-4 hidden mt-4">
+            <div class="flex justify-center gap-2 mb-4">
+              <input type="text" maxlength="1" class="w-12 h-14 text-center text-2xl bg-surface-hover border border-white/10 rounded-xl focus:outline-none focus:border-primary">
+              <input type="text" maxlength="1" class="w-12 h-14 text-center text-2xl bg-surface-hover border border-white/10 rounded-xl focus:outline-none focus:border-primary">
+              <input type="text" maxlength="1" class="w-12 h-14 text-center text-2xl bg-surface-hover border border-white/10 rounded-xl focus:outline-none focus:border-primary">
+              <input type="text" maxlength="1" class="w-12 h-14 text-center text-2xl bg-surface-hover border border-white/10 rounded-xl focus:outline-none focus:border-primary">
+              <input type="text" maxlength="1" class="w-12 h-14 text-center text-2xl bg-surface-hover border border-white/10 rounded-xl focus:outline-none focus:border-primary">
+              <input type="text" maxlength="1" class="w-12 h-14 text-center text-2xl bg-surface-hover border border-white/10 rounded-xl focus:outline-none focus:border-primary">
+            </div>
+            <button type="submit" class="w-full bg-secondary hover:bg-green-600 text-white rounded-xl py-3 font-medium transition-all shadow-lg shadow-secondary/20">
+              Verifica & Entra
+            </button>
+          </form>
+
+          <p class="mt-3 text-xs text-text-muted leading-relaxed">
+            Usa il formato internazionale, per esempio <span class="text-text">+39 333 1234567</span>, così l'SMS può essere inviato correttamente.
+          </p>
+          <p id="auth-error" class="hidden mt-4 text-sm text-red-200 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 text-left"></p>
+        </div>
+      </div>
+
+      <!-- Screen 2: App Lock -->
+      <div id="lock-screen" class="absolute inset-0 bg-black/70 backdrop-blur-2xl z-[80] hidden flex items-center justify-center p-6">
+        <div class="glass p-8 sm:p-10 rounded-3xl w-full max-w-md shadow-2xl border border-white/10 text-center">
+          <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-5">
+            <i class="fa-solid fa-lock text-4xl text-primary"></i>
+          </div>
+          <p class="text-[11px] uppercase tracking-[0.35em] text-text-muted">Blocco schermo</p>
+          <h2 id="lock-title" class="text-3xl font-light mt-2">Schermo bloccato</h2>
+          <p id="lock-subtitle" class="text-text-muted mt-3 text-sm leading-relaxed">
+            Inserisci la password per riaprire ME Comunications.
+          </p>
+          <p id="lock-user-label" class="mt-4 text-xs text-text-muted"></p>
+
+          <form id="lock-form" class="mt-6 space-y-4">
+            <div>
+              <label id="lock-password-label" for="lock-password" class="block text-left text-xs uppercase tracking-widest text-text-muted mb-2">Password</label>
+              <input id="lock-password" type="password" autocomplete="current-password" class="w-full bg-surface-hover/50 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-text-muted/50" placeholder="Inserisci la password">
+            </div>
+            <div id="lock-confirm-row">
+              <label for="lock-confirm-password" class="block text-left text-xs uppercase tracking-widest text-text-muted mb-2">Conferma password</label>
+              <input id="lock-confirm-password" type="password" autocomplete="new-password" class="w-full bg-surface-hover/50 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-text-muted/50" placeholder="Ripeti la password">
+            </div>
+            <p id="lock-error" class="hidden text-sm text-red-200 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 text-left"></p>
+            <button id="lock-submit" type="submit" class="w-full bg-primary hover:bg-primary-dark text-white rounded-xl py-3 font-medium transition-all shadow-lg shadow-primary/20">
+              Sblocca
+            </button>
+            <button id="lock-switch-mode" type="button" class="hidden w-full text-sm text-text-muted hover:text-primary transition-colors">
+              Cambia password
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Main Application (Sidebar + Chat Area) -->
+      
+      <!-- Sidebar (Left) -->
+      <aside class="glass-panel w-full sm:w-[400px] flex-shrink-0 flex flex-col h-full">
+        <!-- Sidebar Header -->
+        <header class="bg-surface/60 h-[70px] px-4 flex items-center justify-between border-b border-border backdrop-blur-md">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold cursor-pointer hover:scale-105 transition-transform" id="user-initials">
+              US
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-text-muted">
+            <button class="w-10 h-10 rounded-full hover:bg-surface-hover flex items-center justify-center transition-colors relative" title="Stato" id="header-status-btn">
+              <i class="fa-solid fa-circle-notch"></i>
+              <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+            </button>
+            <button class="w-10 h-10 rounded-full hover:bg-surface-hover flex items-center justify-center transition-colors" title="Nuova Chat">
+              <i class="fa-solid fa-comment-medical"></i>
+            </button>
+            <button class="w-10 h-10 rounded-full hover:bg-surface-hover flex items-center justify-center transition-colors" title="Menu">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="p-3 border-b border-border bg-surface/30">
+          <div class="bg-surface-hover flex items-center rounded-xl px-4 py-2 border border-white/5 focus-within:border-primary/50 focus-within:bg-surface transition-all">
+            <i class="fa-solid fa-magnifying-glass text-text-muted mr-3 text-sm"></i>
+            <input type="text" id="contact-search" placeholder="Cerca o inizia una nuova chat" class="bg-transparent w-full focus:outline-none text-sm placeholder:text-text-muted/70">
+            <button class="text-text-muted hover:text-text ml-2 hidden">
+              <i class="fa-solid fa-filter"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sidebar Navigation Tabs -->
+        <div class="flex border-b border-border bg-surface/40">
+          <button id="tab-chats" class="flex-1 py-3 text-xs font-bold uppercase tracking-widest text-primary border-b-2 border-primary hover:bg-surface-hover transition-all">
+            <i class="fa-solid fa-message mb-1 block text-lg"></i> Chat
+          </button>
+          <button id="tab-groups" class="flex-1 py-3 text-xs font-bold uppercase tracking-widest text-text-muted border-b-2 border-transparent hover:bg-surface-hover transition-all">
+            <i class="fa-solid fa-user-group mb-1 block text-lg"></i> Gruppi
+          </button>
+          <button id="tab-communities" class="flex-1 py-3 text-xs font-bold uppercase tracking-widest text-text-muted border-b-2 border-transparent hover:bg-surface-hover transition-all">
+            <i class="fa-solid fa-users-viewfinder mb-1 block text-lg"></i> Community
+          </button>
+          <button id="tab-status" class="flex-1 py-3 text-xs font-bold uppercase tracking-widest text-text-muted border-b-2 border-transparent hover:bg-surface-hover transition-all">
+            <i class="fa-solid fa-circle-notch mb-1 block text-lg"></i> Stati
+          </button>
+        </div>
+
+        <!-- Chat List -->
+        <div class="flex-1 overflow-y-auto" id="chat-list">
+          <!-- Chat list will be populated dynamically via main.js -->
+        </div>
+      </aside>
+
+      <!-- Main Chat Area (Right) -->
+      <main id="main-chat-area" class="flex-1 flex flex-col relative bg-chat-bg transform translate-x-full md:translate-x-0 transition-transform duration-300 fixed inset-0 md:relative md:flex z-40 bg-surface">
+        
+        <!-- Splash Screen (When no chat is selected) -->
+        <div id="no-chat-selected" class="absolute inset-0 flex flex-col items-center justify-center bg-surface/95 z-20 p-8">
+          <div class="w-32 h-32 mb-8 bg-primary/10 rounded-full flex items-center justify-center border-4 border-primary/20 shadow-2xl">
+             <i class="fa-solid fa-comments text-6xl text-primary animate-pulse"></i>
+          </div>
+          <h1 class="text-4xl font-bold tracking-tight text-text mb-2">ME Comunications <span class="text-primary">Pro</span></h1>
+          <p class="text-text-muted max-w-md text-center text-lg leading-relaxed font-light">
+            Sincronizzazione completata. <br>
+            Benvenuto nella tua nuova centrale di messaggistica.
+          </p>
+          <div class="mt-12 flex items-center gap-2 text-text-muted/50 text-xs tracking-widest uppercase">
+            <i class="fa-solid fa-lock text-[10px]"></i>
+            <span>Sicurezza End-to-End ME-C</span>
+          </div>
+        </div>
+
+        <!-- Chat Header -->
+        <header class="h-16 px-4 flex items-center justify-between border-b border-border bg-surface/80 backdrop-blur-md sticky top-0 z-20">
+          <div class="flex items-center gap-3">
+            <!-- Back Button (Mobile Only) -->
+            <button id="back-to-list" class="md:hidden text-text-muted hover:text-text p-2 -ml-2">
+              <i class="fa-solid fa-arrow-left text-xl"></i>
+            </button>
+            <div class="relative">
+              <img src="https://ui-avatars.com/api/?name=Chat&background=random" alt="Profile" class="w-10 h-10 rounded-full object-cover border border-white/10">
+              <div class="absolute bottom-0 right-0 w-3 h-3 bg-secondary border-2 border-surface rounded-full"></div>
+            </div>
+            <div>
+              <h2 class="font-medium text-text truncate max-w-[150px] sm:max-w-none">Seleziona una chat</h2>
+              <p class="text-[11px] text-secondary font-medium uppercase tracking-wider">Online</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 text-text-muted">
+            <!-- Videocall with Avatar Option -->
+            <div class="relative group">
+              <button class="w-10 h-10 rounded-full hover:bg-surface-hover flex items-center justify-center transition-colors hover:text-primary" title="Videochiamata (normale o con Avatar)">
+                <i class="fa-solid fa-video"></i>
+              </button>
+            </div>
+            <button class="w-10 h-10 rounded-full hover:bg-surface-hover flex items-center justify-center transition-colors" title="Chiamata Vocale">
+              <i class="fa-solid fa-phone"></i>
+            </button>
+            <div class="w-px h-6 bg-border mx-1"></div>
+            <button class="w-10 h-10 rounded-full hover:bg-surface-hover flex items-center justify-center transition-colors">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <button class="w-10 h-10 rounded-full hover:bg-surface-hover flex items-center justify-center transition-colors">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Messages Area -->
+        <div class="flex-1 overflow-y-auto p-4 space-y-4" id="messages-container">
+          <!-- Notification -->
+          <div class="flex justify-center mb-6">
+            <div class="bg-surface-hover text-text-muted text-xs px-4 py-1.5 rounded-lg shadow-sm border border-white/5">
+              Oggi
+            </div>
+          </div>
+          <div class="flex justify-center mb-6">
+            <div class="bg-surface-hover/80 text-[#ffd279] text-xs px-4 py-2 rounded-lg shadow-sm border border-white/5 flex items-center gap-2 max-w-md text-center">
+              <i class="fa-solid fa-lock text-[10px]"></i>
+              I messaggi e le chiamate sono crittografati end-to-end. Nessuno al di fuori di questa chat, nemmeno ME Comunications, può leggerli o ascoltarli.
+            </div>
+          </div>
+
+          <!-- Real-time messages will be rendered here -->
+        </div>
+
+        <!-- Chat Input Area -->
+        <footer class="bg-surface/80 backdrop-blur-md px-4 py-3 flex items-end gap-2 border-t border-border relative z-10">
+          <!-- Media Popover -->
+          <div id="media-popover" class="hidden absolute bottom-full left-4 mb-2 w-72 h-96 bg-surface border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col z-50 animate-slide-up">
+            <div class="flex border-b border-border bg-surface-hover/50">
+              <button id="tab-emoji" class="flex-1 p-3 hover:bg-surface-hover text-sm font-bold border-b-2 border-primary transition-all">Emoji</button>
+              <button id="tab-gif" class="flex-1 p-3 hover:bg-surface-hover text-sm font-bold border-b-2 border-transparent transition-all">GIF</button>
+            </div>
+            <div id="media-content" class="flex-1 overflow-y-auto p-4 scrollbar-thin">
+              <!-- Content injected via JS -->
+            </div>
+            <div id="gif-search-box" class="p-2 border-t border-border hidden">
+              <input type="text" id="gif-query" placeholder="Cerca GIF..." class="w-full bg-surface-hover rounded-lg px-3 py-2 text-sm focus:outline-none border border-white/5 focus:border-primary/50">
+            </div>
+          </div>
+
+          <button id="emoji-trigger" class="w-10 h-10 rounded-xl hover:bg-surface-hover flex items-center justify-center transition-colors text-text-muted shrink-0 mb-1" title="Emoji & GIF">
+            <i class="fa-regular fa-face-smile text-xl"></i>
+          </button>
+          <button id="attach-trigger" class="w-10 h-10 rounded-xl hover:bg-surface-hover flex items-center justify-center transition-colors text-text-muted shrink-0 mb-1" title="Allega">
+            <i class="fa-solid fa-paperclip text-xl"></i>
+          </button>
+          <input type="file" id="file-input" class="hidden" multiple>
+          
+          <div class="flex-1 bg-surface-hover rounded-2xl border border-white/5 focus-within:border-primary/30 transition-all flex items-end min-h-[44px]">
+            <textarea placeholder="Scrivi un messaggio" class="w-full bg-transparent resize-none focus:outline-none px-4 py-3 max-h-32 text-[15px] scrollbar-thin text-text placeholder:text-text-muted" rows="1"></textarea>
+          </div>
+          
+          <button class="w-12 h-12 rounded-full bg-primary hover:bg-primary-dark flex items-center justify-center transition-all text-white shrink-0 shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 mb-0.5">
+            <i class="fa-solid fa-microphone text-xl"></i>
+          </button>
+        </footer>
+      </main>
+
+    </div>
+
+    <!-- Video Call Modal -->
+    <div id="call-modal" class="absolute inset-0 bg-black/90 z-[60] flex flex-col hidden">
+      <div class="flex-1 relative flex items-center justify-center">
+        <!-- Main Video / Avatar Canvas -->
+        <canvas id="avatar-canvas" class="w-full h-full object-cover hidden"></canvas>
+        <video id="remote-video" class="w-full h-full object-cover"></video>
+        
+        <!-- Local Preview -->
+        <div class="absolute bottom-6 right-6 w-32 h-44 sm:w-48 sm:h-64 bg-surface rounded-xl border border-white/20 overflow-hidden shadow-2xl">
+          <video id="local-video" class="w-full h-full object-cover" muted></video>
+        </div>
+
+        <!-- Call Overlay Info -->
+        <div class="absolute top-10 left-1/2 -translate-x-1/2 text-center">
+          <h2 id="call-partner-name" class="text-2xl font-medium mb-1">Alice</h2>
+          <p class="text-text-muted">In chiamata...</p>
+        </div>
+      </div>
+
+      <!-- Call Controls -->
+      <div class="h-32 bg-surface/80 backdrop-blur-xl border-t border-white/5 flex items-center justify-center gap-6">
+        <button id="toggle-avatar" class="w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all" title="Usa Avatar">
+          <i class="fa-solid fa-user-astronaut text-xl"></i>
+        </button>
+        <button class="w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all">
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+        <button id="end-call" class="w-16 h-16 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center transition-all shadow-lg shadow-red-500/30">
+          <i class="fa-solid fa-phone-slash text-2xl"></i>
+        </button>
+        <button class="w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all">
+          <i class="fa-solid fa-video"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Status Modal -->
+    <div id="status-modal" class="absolute inset-0 bg-surface/98 z-[70] flex flex-col hidden">
+      <header class="h-16 px-6 flex items-center justify-between border-b border-border">
+        <h2 class="text-xl font-medium">Nuovo Stato</h2>
+        <button id="close-status" class="text-text-muted hover:text-text"><i class="fa-solid fa-xmark text-2xl"></i></button>
+      </header>
+      <div class="flex-1 flex flex-col items-center justify-center p-10">
+        <div id="status-preview" class="w-full max-w-sm aspect-[9/16] bg-black rounded-2xl border border-white/10 flex items-center justify-center overflow-hidden mb-6 relative">
+          <i class="fa-solid fa-image text-6xl text-white/10"></i>
+        </div>
+        <div class="flex gap-4">
+          <label class="bg-primary hover:bg-primary-dark px-6 py-3 rounded-xl cursor-pointer transition-all">
+            <i class="fa-solid fa-upload mr-2"></i> Carica Foto/Video
+            <input type="file" id="status-upload" class="hidden" accept="image/*,video/*">
+          </label>
+          <button id="add-music-btn" class="bg-surface-hover px-6 py-3 rounded-xl hover:bg-border transition-all">
+            <i class="fa-solid fa-music mr-2"></i> Aggiungi Audio
+          </button>
+        </div>
+
+        <!-- Music Selector (Hidden) -->
+        <div id="music-selector" class="mt-6 w-full max-w-sm hidden">
+          <h4 class="text-xs font-bold text-text-muted uppercase mb-3">Scegli una traccia</h4>
+          <div class="space-y-2 max-h-40 overflow-y-auto scrollbar-thin">
+            <div class="music-track p-3 rounded-lg bg-surface-hover hover:bg-border cursor-pointer flex items-center justify-between" data-track="Lo-Fi Beats">
+              <span>Lo-Fi Beats</span>
+              <i class="fa-solid fa-play text-primary"></i>
+            </div>
+            <div class="music-track p-3 rounded-lg bg-surface-hover hover:bg-border cursor-pointer flex items-center justify-between" data-track="Cyberpunk Night">
+              <span>Cyberpunk Night</span>
+              <i class="fa-solid fa-play text-primary"></i>
+            </div>
+            <div class="music-track p-3 rounded-lg bg-surface-hover hover:bg-border cursor-pointer flex items-center justify-between" data-track="Ocean Waves">
+              <span>Ocean Waves</span>
+              <i class="fa-solid fa-play text-primary"></i>
+            </div>
+          </div>
+          <p id="selected-music" class="mt-3 text-xs text-primary italic text-center"></p>
+        </div>
+        <button id="post-status" class="mt-10 bg-secondary px-10 py-4 rounded-2xl font-bold text-lg hover:scale-105 active:scale-95 transition-all hidden">
+          PUBBLICA STATO
+        </button>
+      </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="fixed hidden z-[100] bg-surface border border-white/10 rounded-xl shadow-2xl py-2 min-w-[180px] backdrop-blur-xl">
+      <ul class="flex flex-col" id="context-menu-list">
+        <!-- Actions will be injected here -->
+      </ul>
+    </div>
+
+    <!-- Media Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[200] bg-black/95 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300">
+      <div class="absolute top-0 w-full p-6 flex justify-between items-center bg-gradient-to-b from-black/60 to-transparent">
+        <span id="lightbox-title" class="text-white font-medium">Immagine</span>
+        <div class="flex gap-4">
+          <a id="lightbox-download" href="#" download class="text-white hover:text-primary transition-colors text-xl">
+            <i class="fa-solid fa-download"></i>
+          </a>
+          <button id="close-lightbox" class="text-white hover:text-red-500 transition-colors text-2xl">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+      <img id="lightbox-img" src="" class="max-w-[95%] max-h-[85vh] object-contain shadow-2xl rounded-sm">
+      <video id="lightbox-video" controls class="max-w-[95%] max-h-[85vh] hidden"></video>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/main.js"></script>
+    <script>
+      // Simple toggle for splash screen demonstration
+      document.addEventListener('DOMContentLoaded', () => {
+        const chatItems = document.querySelectorAll('#chat-list > div');
+        const splashScreen = document.getElementById('no-chat-selected');
+        
+        chatItems.forEach(item => {
+          item.addEventListener('click', () => {
+            splashScreen.classList.add('hidden');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

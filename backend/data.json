@@ -1,0 +1,393 @@
+{
+  "contacts": [
+    {
+      "id": "17768638302420.7182585580548486",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-416269",
+      "contactName": "Abi"
+    },
+    {
+      "id": "17768638302430.6287832008014613",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-416c65",
+      "contactName": "Ale"
+    },
+    {
+      "id": "17768638302440.8358977748235596",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-416c696365",
+      "contactName": "Alice"
+    },
+    {
+      "id": "17768638302450.8307921447057813",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-416e647265",
+      "contactName": "Andres"
+    },
+    {
+      "id": "17768638302490.5014696722864709",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-416e67656c",
+      "contactName": "Angelica Educatrice"
+    },
+    {
+      "id": "17768638302500.8309516312866592",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4174746976",
+      "contactName": "Attiva"
+    },
+    {
+      "id": "17768638302520.7762606825567777",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-426f766174",
+      "contactName": "Bovati Matteo "
+    },
+    {
+      "id": "17768638302530.27015451675273794",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-43616d696c",
+      "contactName": "Camillak"
+    },
+    {
+      "id": "17768638302540.1262470054210003",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4361706f",
+      "contactName": "Capo"
+    },
+    {
+      "id": "17768638302560.6467703287124695",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4361726c61",
+      "contactName": "Carla"
+    },
+    {
+      "id": "17768638302570.4239288462665616",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-43617361",
+      "contactName": "Casa"
+    },
+    {
+      "id": "17768638302580.9959498904114714",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-43656c65",
+      "contactName": "Cele"
+    },
+    {
+      "id": "17768638302590.04481430027352595",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4372697374",
+      "contactName": "Cristiano"
+    },
+    {
+      "id": "17768638302610.5972824606171461",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-44616e6965",
+      "contactName": "Daniele"
+    },
+    {
+      "id": "17768638302630.8412494979622418",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-44616e696c",
+      "contactName": "Danilo "
+    },
+    {
+      "id": "17768638302650.09234122563824365",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-44445f4441",
+      "contactName": "DD_DAVIDE 😉💨"
+    },
+    {
+      "id": "17768638302670.6209292849722841",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-456c69",
+      "contactName": "Eli"
+    },
+    {
+      "id": "17768638302680.6507516129667639",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-456c697a61",
+      "contactName": "Eliza"
+    },
+    {
+      "id": "17768638302700.7455851467023531",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-456e647269",
+      "contactName": "Endri"
+    },
+    {
+      "id": "17768638302710.6624080770900223",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4661626965",
+      "contactName": "Fabietto"
+    },
+    {
+      "id": "17768638302730.43889634641289743",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4672616e63",
+      "contactName": "Franci"
+    },
+    {
+      "id": "17768638302760.38577207691838655",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4672656464",
+      "contactName": "Freddy"
+    },
+    {
+      "id": "17768638302780.01104367537798212",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-47616961",
+      "contactName": "Gaia"
+    },
+    {
+      "id": "17768638302790.48496796014088783",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-67656d6d69",
+      "contactName": "gemmina"
+    },
+    {
+      "id": "17768638302800.4785882255271434",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-47686f7374",
+      "contactName": "Ghosty"
+    },
+    {
+      "id": "17768638302820.4548093615094302",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4769616461",
+      "contactName": "Giada"
+    },
+    {
+      "id": "17768638302840.20251980293495797",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-47696f7267",
+      "contactName": "Giorgia"
+    },
+    {
+      "id": "17768638302860.7146035364245809",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4769756c69",
+      "contactName": "Giulio"
+    },
+    {
+      "id": "17768638302900.5573111826154729",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-496e666f69",
+      "contactName": "Infoinviaggio"
+    },
+    {
+      "id": "17768638302910.3299350050168721",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-497361",
+      "contactName": "Isa"
+    },
+    {
+      "id": "17768638302920.4993997388622302",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4a61736d69",
+      "contactName": "Jasmine"
+    },
+    {
+      "id": "17768638302930.1645655639274135",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4b616c6569",
+      "contactName": "Kaleido "
+    },
+    {
+      "id": "17768638302940.6788479053366407",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4b657479",
+      "contactName": "Kety"
+    },
+    {
+      "id": "17768638302960.5009506977331464",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4c61757261",
+      "contactName": "Laura"
+    },
+    {
+      "id": "17768638302970.9810514258289127",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4c656f6e61",
+      "contactName": "Leonardo"
+    },
+    {
+      "id": "17768638302980.7568301831629709",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4c696c6920",
+      "contactName": "Lili "
+    },
+    {
+      "id": "17768638302990.38806883700061023",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4d616d6d61",
+      "contactName": "Mamma"
+    },
+    {
+      "id": "17768638303010.8673556432708005",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4d414e5574",
+      "contactName": "MANUtenzione"
+    },
+    {
+      "id": "17768638303020.6875087084839804",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4d617269",
+      "contactName": "Mari"
+    },
+    {
+      "id": "17768638303040.6966097188972245",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4d6174656f",
+      "contactName": "Mateo"
+    },
+    {
+      "id": "17768638303050.7398343976535233",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4d69636869",
+      "contactName": "Michi Abf "
+    },
+    {
+      "id": "17768638303070.7831165526488275",
+      "userId": "mock-user-id-123",
+      "contactPhone": "Caga",
+      "contactName": "Miss"
+    },
+    {
+      "id": "17768638303080.3697012866525575",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4e61646961",
+      "contactName": "Nadia"
+    },
+    {
+      "id": "17768638303100.4476257433584536",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4e617479f0",
+      "contactName": "Naty🥀"
+    },
+    {
+      "id": "17768638303140.6214679121834832",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4e69636f6c",
+      "contactName": "Nicolas "
+    },
+    {
+      "id": "17768638303170.5036870751042142",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-4e6f6e6e69",
+      "contactName": "Nonni"
+    },
+    {
+      "id": "17768638303190.19705166555799414",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-50616f6c61",
+      "contactName": "Paola🎙"
+    },
+    {
+      "id": "17768638303210.03202196708769178",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-506170c3a0",
+      "contactName": "Papà"
+    },
+    {
+      "id": "17768638303220.6968253292731468",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-50617061",
+      "contactName": "Papa"
+    },
+    {
+      "id": "17768638303240.6265535476636566",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-53636f6e6f",
+      "contactName": "Sconosciuto"
+    },
+    {
+      "id": "17768638303250.8567266209658129",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-50726f66",
+      "contactName": "Prof"
+    },
+    {
+      "id": "17768638303270.5978642563461831",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-5269636172",
+      "contactName": "Ricarica"
+    },
+    {
+      "id": "17768638303300.20989590505692268",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-53616d75",
+      "contactName": "Samu"
+    },
+    {
+      "id": "17768638303310.3663303784298406",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-53616e6472",
+      "contactName": "Sandra"
+    },
+    {
+      "id": "17768638303330.8644621023872239",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-53617261",
+      "contactName": "Sara"
+    },
+    {
+      "id": "17768638303350.9637109591843829",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-53696d6f6e",
+      "contactName": "Simon"
+    },
+    {
+      "id": "17768638303360.9678168130238018",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-5374656661",
+      "contactName": "Stefano"
+    },
+    {
+      "id": "17768638303380.1618982739842032",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-5566666963",
+      "contactName": "Ufficio"
+    },
+    {
+      "id": "17768638303390.33244163341163113",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-556d616d61",
+      "contactName": "Umama"
+    },
+    {
+      "id": "17768638303400.27191522436042037",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-5669746f20",
+      "contactName": "Vito Reina Capo Tecnico Radio"
+    },
+    {
+      "id": "17768638303410.7769528433576667",
+      "userId": "mock-user-id-123",
+      "contactPhone": "TEMP-5a696920",
+      "contactName": "Zii "
+    }
+  ],
+  "messages": [
+    {
+      "id": "1776772205018",
+      "content": "WhatsApp Image 2026-04-10 at 13.39.17.jpeg",
+      "mediaUrl": "https://via.placeholder.com/800x600.png?text=Mock+Image",
+      "senderId": "mock-user-id-123",
+      "chatId": "chat-TEMP-416269",
+      "mediaType": "image",
+      "isSpam": false,
+      "createdAt": "2026-04-21T11:50:05.018Z"
+    },
+    {
+      "id": "1776860658746",
+      "content": "CIAOO.doc",
+      "mediaUrl": "https://placehold.co/800x600/000/fff.mp4?text=Media+Mock",
+      "senderId": "mock-user-id-123",
+      "chatId": "p2p-TEMP-416269-mock-user-id-123",
+      "mediaType": "file",
+      "isSpam": false,
+      "createdAt": "2026-04-22T12:24:18.746Z"
+    }
+  ],
+  "chats": []
+}

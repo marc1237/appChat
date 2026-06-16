@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @default(uuid())
+  phoneNumber    String    @unique
+  name           String?
+  avatarUrl      String?   // For the standard avatar or 3D avatar URL
+  about          String?   @default("Hey there! I am using ME Comunications.")
+  isOnline       Boolean   @default(false)
+  lastSeen       DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  // Relations
+  sentMessages   Message[] @relation("SentMessages")
+  chats          ChatParticipant[]
+  contacts       Contact[] @relation("UserContacts")
+  blockedUsers   BlockedUser[] @relation("Blocker")
+  blockedBy      BlockedUser[] @relation("Blocked")
+  statuses       Status[]
+}
+
+model Contact {
+  id             String    @id @default(uuid())
+  userId         String
+  user           User      @relation("UserContacts", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  contactPhone   String
+  contactName    String
+  createdAt      DateTime  @default(now())
+
+  @@unique([userId, contactPhone])
+}
+
+model BlockedUser {
+  id             String    @id @default(uuid())
+  blockerId      String
+  blocker        User      @relation("Blocker", fields: [blockerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  blockedId      String
+  blocked        User      @relation("Blocked", fields: [blockedId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  createdAt      DateTime  @default(now())
+
+  @@unique([blockerId, blockedId])
+}
+
+model Chat {
+  id             String    @id @default(uuid())
+  isGroup        Boolean   @default(false)
+  name           String?   // Group name
+  description    String?   // Group description
+  groupAvatarUrl String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  // Relations
+  participants   ChatParticipant[]
+  messages       Message[]
+}
+
+model ChatParticipant {
+  id             String    @id @default(uuid())
+  userId         String
+  user           User      @relation(fields: [userId], references: [id])
+  chatId         String
+  chat           Chat      @relation(fields: [chatId], references: [id])
+  isAdmin        Boolean   @default(false) // For groups
+  joinedAt       DateTime  @default(now())
+
+  @@unique([userId, chatId])
+}
+
+model Message {
+  id             String    @id @default(uuid())
+  content        String?   // Text content
+  mediaUrl       String?   // Image/Video/Audio URL
+  mediaType      String?   // "image", "video", "audio", "document", "gif"
+  isSpam         Boolean   @default(false)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  // Relations
+  senderId       String
+  sender         User      @relation("SentMessages", fields: [senderId], references: [id])
+  chatId         String
+  chat           Chat      @relation(fields: [chatId], references: [id])
+}
+
+model Status {
+  id             String    @id @default(uuid())
+  userId         String
+  user           User      @relation(fields: [userId], references: [id])
+  mediaUrl       String    // The finalized video with audio mix
+  mediaType      String    // "image" or "video"
+  caption        String?
+  expiresAt      DateTime
+  createdAt      DateTime  @default(now())
+}
